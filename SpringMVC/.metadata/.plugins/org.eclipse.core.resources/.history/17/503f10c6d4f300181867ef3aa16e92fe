@@ -1,0 +1,25 @@
+package edu.mvc.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.HttpRequestHandler;
+
+import edu.mvc.model.Fruits;
+
+public class FruitsControllerTest2 implements HttpRequestHandler{
+    private FruitsService fruitsService = new FruitsService();
+
+    // 配合非注解的处理器适配器---2：HttpRequestHandlerAdapter
+    public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 模拟Service获取水果商品列表
+        List<Fruits> fruitsList = fruitsService.queryFruitsList();
+        // 返回ModelAndView
+        request.setAttribute("fruitsList", fruitsList);
+        request.getRequestDispatcher("/WEB-INF/jsp/fruits/fruitsList.jsp").forward(request, response);
+    }
+}

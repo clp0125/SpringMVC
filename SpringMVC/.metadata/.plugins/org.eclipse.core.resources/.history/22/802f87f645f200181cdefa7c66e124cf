@@ -1,0 +1,7 @@
+package edu.mvc.model;
+
+public class Fruits {
+    private String name;
+    private double price;
+    private String producing_area;
+}
